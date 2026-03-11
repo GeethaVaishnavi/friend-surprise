@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>50 Reasons Surprise</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(120deg,#ff9a9e,#fad0c4);
+text-align:center;
+color:white;
+overflow-x:hidden;
+}
+
+/* Loading */
+
+#loading{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:35px;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+0%{opacity:1}
+50%{opacity:0.5}
+100%{opacity:1}
+}
+
+/* Name reveal */
+
+#nameSection{
+display:none;
+padding-top:100px;
+font-size:45px;
+animation:fade 3s;
+}
+
+@keyframes fade{
+from{opacity:0}
+to{opacity:1}
+}
+
+/* Cards */
+
+#cards{
+display:none;
+padding:40px;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+}
+
+.card{
+width:200px;
+height:120px;
+perspective:1000px;
+}
+
+.inner{
+position:relative;
+width:100%;
+height:100%;
+transition:transform 0.8s;
+transform-style:preserve-3d;
+}
+
+.card:hover .inner{
+transform:rotateY(180deg);
+}
+
+.front,.back{
+position:absolute;
+width:100%;
+height:100%;
+backface-visibility:hidden;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:10px;
+}
+
+.front{
+background:white;
+color:#ff4081;
+}
+
+.back{
+background:#ff4081;
+transform:rotateY(180deg);
+}
+
+/* Teddy */
+
+#teddy{
+font-size:100px;
+margin-top:30px;
+animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-20px)}
+}
+
+/* Final message */
+
+#final{
+display:none;
+font-size:35px;
+margin-top:40px;
+animation:fade 3s;
+}
+
+button{
+padding:15px 30px;
+font-size:18px;
+border:none;
+border-radius:25px;
+background:#ff4081;
+color:white;
+cursor:pointer;
+margin-top:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="loading">
+⏳ Preparing Surprise...
+</div>
+
+<div id="nameSection">
+✨ For My Amazing Friend ✨
+<br>
+<button onclick="showCards()">Open Your Surprise</button>
+</div>
+
+<div id="cards"></div>
+
+<div id="teddy">🧸</div>
+
+<button id="finishBtn" onclick="showFinal()" style="display:none">
+See Final Message
+</button>
+
+<div id="final">
+💖 You Are The Best Friend Ever 💖
+</div>
+
+<audio id="music" autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+<script>
+
+/* 50 reasons */
+
+var reasons=[
+"You always make me smile",
+"You are kind",
+"You support me",
+"You understand me",
+"You make life fun",
+"You are always honest",
+"You inspire me",
+"You care about others",
+"You motivate me",
+"You are thoughtful",
+"You are positive",
+"You help everyone",
+"You are friendly",
+"You are unique",
+"You are funny",
+"You give good advice",
+"You are creative",
+"You are brave",
+"You are strong",
+"You are smart",
+"You make memories special",
+"You respect everyone",
+"You are hardworking",
+"You spread happiness",
+"You are humble",
+"You are cheerful",
+"You are sweet",
+"You are trustworthy",
+"You make my day better",
+"You are amazing",
+"You are caring",
+"You are loyal",
+"You are supportive",
+"You are talented",
+"You make people happy",
+"You never give up",
+"You are inspiring",
+"You are wonderful",
+"You brighten my day",
+"You are lovable",
+"You are cool",
+"You are fun",
+"You are thoughtful",
+"You are positive energy",
+"You make everything better",
+"You are helpful",
+"You are special",
+"You are one of a kind",
+"You are unforgettable",
+"And that’s why you are the best!"
+]
+
+setTimeout(function(){
+document.getElementById("loading").style.display="none"
+document.getElementById("nameSection").style.display="block"
+},3000)
+
+
+function showCards(){
+
+document.getElementById("nameSection").style.display="none"
+
+var container=document.getElementById("cards")
+container.style.display="flex"
+
+reasons.forEach(function(r,i){
+
+var card=document.createElement("div")
+card.className="card"
+
+card.innerHTML=
+
+'<div class="inner">'+
+'<div class="front">Reason '+(i+1)+'</div>'+
+'<div class="back">'+r+'</div>'+
+'</div>'
+
+container.appendChild(card)
+
+})
+
+document.getElementById("finishBtn").style.display="inline-block"
+
+}
+
+
+function showFinal(){
+
+document.getElementById("final").style.display="block"
+
+}
+
+</script>
+
+</body>
+</html>
