@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>50 Reasons Surprise</title>
+<title>Special Surprise</title>
 
 <style>
 
@@ -12,16 +12,39 @@ font-family:Arial;
 background:linear-gradient(120deg,#ff9a9e,#fad0c4);
 text-align:center;
 color:white;
-overflow-x:hidden;
 }
 
-/* Loading */
+/* sections */
 
-#loading{
-height:100vh;
-display:flex;
+.section{
+display:none;
+min-height:100vh;
 justify-content:center;
 align-items:center;
+flex-direction:column;
+padding:30px;
+}
+
+.active{
+display:flex;
+}
+
+/* button */
+
+button{
+padding:15px 30px;
+font-size:18px;
+border:none;
+border-radius:25px;
+background:#ff4081;
+color:white;
+cursor:pointer;
+margin-top:20px;
+}
+
+/* loading */
+
+#loading{
 font-size:35px;
 animation:blink 1s infinite;
 }
@@ -32,34 +55,21 @@ animation:blink 1s infinite;
 100%{opacity:1}
 }
 
-/* Name reveal */
-
-#nameSection{
-display:none;
-padding-top:100px;
-font-size:45px;
-animation:fade 3s;
-}
-
-@keyframes fade{
-from{opacity:0}
-to{opacity:1}
-}
-
-/* Cards */
+/* cards */
 
 #cards{
-display:none;
-padding:40px;
-display:flex;
+display: flex;
 flex-wrap:wrap;
-justify-content:center;
+justify-content: center;
 gap:20px;
+max-width: 900px;
+margin: auto;
 }
 
 .card{
 width:200px;
 height:120px;
+margin: 10px;
 perspective:1000px;
 }
 
@@ -97,36 +107,14 @@ background:#ff4081;
 transform:rotateY(180deg);
 }
 
-/* Teddy */
+/* final page */
 
-#teddy{
-font-size:100px;
-margin-top:30px;
-animation:bounce 2s infinite;
+#final h1{
+font-size:45px;
 }
 
-@keyframes bounce{
-0%,100%{transform:translateY(0)}
-50%{transform:translateY(-20px)}
-}
-
-/* Final message */
-
-#final{
-display:none;
-font-size:35px;
-margin-top:40px;
-animation:fade 3s;
-}
-
-button{
-padding:15px 30px;
-font-size:18px;
-border:none;
-border-radius:25px;
-background:#ff4081;
-color:white;
-cursor:pointer;
+#final p{
+font-size:28px;
 margin-top:20px;
 }
 
@@ -135,79 +123,114 @@ margin-top:20px;
 
 <body>
 
-<div id="loading">
-⏳ Preparing Surprise...
+<!-- INTRO -->
+
+<div id="intro" class="section active">
+
+<p>
+Hey 😊 <br><br>
+
+Meku oka small surprise ready chesa…  
+Direct ga cheppalani anipinchaledu...konchem special ga undali anukunna... <br><br>
+  
+Konchem wait cheyandii… appudu meeku oka cute surprise kanipistundi 🎁 <br><br>
+
+Hope it makes you smile.  
+Start chesi chudandi… waiting for your reaction 😄
+</p>
+
+<button onclick="startSurprise()">Start Surprise</button>
+
 </div>
 
-<div id="nameSection">
-✨ For My Amazing Friend ✨
-<br>
-<button onclick="showCards()">Open Your Surprise</button>
+
+<!-- LOADING -->
+
+<div id="loadingSection" class="section">
+
+<div id="loading">⏳ Preparing Surprise...</div>
+
 </div>
+
+
+<!-- TITLE -->
+
+<div id="titleSection" class="section">
+
+<h2>50 Reasons Why You Are The Best 💖</h2>
+
+<button onclick="showCards()">Start</button>
+
+</div>
+
+
+<!-- CARDS -->
+
+<div id="cardsSection" class="section">
 
 <div id="cards"></div>
 
-<div id="teddy">🧸</div>
+<button onclick="showFinal()">See Final Message</button>
 
-<button id="finishBtn" onclick="showFinal()" style="display:none">
-See Final Message
-</button>
-
-<div id="final">
-💖 You Are The Best Friend Ever 💖
 </div>
 
-<audio id="music" autoplay loop>
-<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
-</audio>
+
+<!-- FINAL MESSAGE -->
+
+<div id="final" class="section">
+
+<h1>💖 You're an amazing person 💖</h1>
+
+<p>
+I'm lucky to have you in my life.
+</p>
+
+</div>
+
 
 <script>
 
-/* 50 reasons */
-
 var reasons=[
+
 "You always make me smile",
 "You are kind",
 "You support me",
 "You understand me",
 "You make life fun",
-"You are always honest",
 "You inspire me",
 "You care about others",
 "You motivate me",
 "You are thoughtful",
-"You are positive",
-"You help everyone",
-"You are friendly",
-"You are unique",
+"You are amazing",
+"You are good advisor",
+"You are loyal",
+"You are supportive",
 "You are funny",
-"You give good advice",
-"You are creative",
-"You are brave",
+"You are special",
 "You are strong",
 "You are smart",
+"You are helpful",
+"You are creative",
+"You are brave",
 "You make memories special",
 "You respect everyone",
-"You are hardworking",
 "You spread happiness",
-"You are humble",
 "You are cheerful",
 "You are sweet",
 "You are trustworthy",
-"You make my day better",
-"You are amazing",
+"You make me feel lucky",
 "You are caring",
-"You are loyal",
-"You are supportive",
 "You are talented",
 "You make people happy",
 "You never give up",
 "You are inspiring",
 "You are wonderful",
-"You brighten my day",
 "You are lovable",
 "You are cool",
 "You are fun",
+"You are positive",
+"You are unique",
+"You are humble",
 "You are thoughtful",
 "You are positive energy",
 "You make everything better",
@@ -215,29 +238,40 @@ var reasons=[
 "You are special",
 "You are one of a kind",
 "You are unforgettable",
-"And that’s why you are the best!"
+"You are awesome",
+"You are kind-hearted",
+"You are precious",
+"You are always honest with me"
+
 ]
 
+
+function startSurprise(){
+
+showSection("loadingSection")
+
 setTimeout(function(){
-document.getElementById("loading").style.display="none"
-document.getElementById("nameSection").style.display="block"
+
+showSection("titleSection")
+
 },3000)
+
+}
 
 
 function showCards(){
 
-document.getElementById("nameSection").style.display="none"
+showSection("cardsSection")
 
 var container=document.getElementById("cards")
-container.style.display="flex"
 
 reasons.forEach(function(r,i){
 
 var card=document.createElement("div")
+
 card.className="card"
 
 card.innerHTML=
-
 '<div class="inner">'+
 '<div class="front">Reason '+(i+1)+'</div>'+
 '<div class="back">'+r+'</div>'+
@@ -247,14 +281,25 @@ container.appendChild(card)
 
 })
 
-document.getElementById("finishBtn").style.display="inline-block"
-
 }
 
 
 function showFinal(){
 
-document.getElementById("final").style.display="block"
+showSection("final")
+
+}
+
+
+function showSection(id){
+
+document.querySelectorAll(".section").forEach(function(sec){
+
+sec.classList.remove("active")
+
+})
+
+document.getElementById(id).classList.add("active")
 
 }
 
